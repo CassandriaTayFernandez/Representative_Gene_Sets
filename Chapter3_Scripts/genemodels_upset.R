@@ -1,4 +1,4 @@
-#Input sequences are all of the gene names of sequences larger than 300bp and the BLAST results of every legume against other legumes
+#Input sequences are all of the gene names of sequences larger than 300bp and the BLAST results of every legume against other legumes (cds vs genome)
 library(tidyverse)
 library(data.table)
 library(UpSetR)
