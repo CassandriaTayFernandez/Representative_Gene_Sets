@@ -26,4 +26,4 @@ vigraorthogenes <- Genecount %>% filter(!(vigra == 0))
 vigunorthogenes <- Genecount %>% filter(!(vigun == 0))
 
 listInputX <- list(cajca = cajcaorthogenes$Orthogroup, cicar = cicarorthogenes$Orthogroup, glyma = glymaorthogenes$Orthogroup, lotja = lotjaorthogenes$Orthogroup, lupan = lupanorthogenes$Orthogroup, medtr = medtrorthogenes$Orthogroup, phavu = phavuorthogenes$Orthogroup, pissa = pissaorthogenes$Orthogroup, tripr = triprorthogenes$Orthogroup, vigan = viganorthogenes$Orthogroup, vigra = vigraorthogenes$Orthogroup, vigun = vigunorthogenes$Orthogroup) 
-upset(fromList(listInputX), nsets = 12, order.by = "freq")
+upset(fromList(listInputX), nsets = 12, nintersects = 30, order.by = "freq",  set_size.show = FALSE, text.scale = c(1,1.2,1,1,1.2,1.1), mb.ratio = c(0.6,0.4))
