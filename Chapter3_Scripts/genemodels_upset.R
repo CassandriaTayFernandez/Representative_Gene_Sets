@@ -15,7 +15,12 @@ all_gene models <- tibble()
 for (ref in names_species$species){
   all_refs <- tibble()
   for (query in names_species$species){
-    if (query == ref) {next}
+    if (query == ref) {
+      ref_blast <- fread(paste0(ref,'.cds.300.names.list'), header = F)  
+      ref_blast <- ref_blast %>% mutate(query_spec = ref, ref_spec = ref)
+      print(paste0(ref,'_ref_',ref,'_cds_list'))
+      all_refs <- bind_rows(all_refs,ref_blast)
+      next}
     ref_blast <- fread(paste0(query,'_query_',ref,'.cds.300_ref.tsv_hit_names_list.txt'), header = F)  
     ref_blast <- ref_blast %>% mutate(query_spec = query, ref_spec = ref)
     print(paste0(ref,'_ref_',query,'_cds_list'))
