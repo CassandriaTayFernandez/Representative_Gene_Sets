@@ -36,4 +36,4 @@ for (query in names_species$species){
 }
 listInput <- list(cajca = cajca_cds_genes$V1,cicar = cicar_cds_genes$V1, glyma = glyma_cds_genes$V1, lotja = lotja_cds_genes$V1, lupan = lupan_cds_genes$V1, medtr = medtr_cds_genes$V1, phavu = phavu_cds_genes$V1, pissa = pissa_cds_genes$V1, tripr = tripr_cds_genes$V1, vigan = vigan_cds_genes$V1, vigra = vigra_cds_genes$V1, vigun = vigun_cds_genes$V1)
 
-upset(fromList(listInput), nsets = 12, order.by = "freq")
+upset(fromList(listInputX), nsets = 12, nintersects = 30, order.by = "freq",  set_size.show = FALSE, text.scale = c(1,1.2,1,1,1.2,1.0), mb.ratio = c(0.6,0.4))
