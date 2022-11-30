@@ -8,16 +8,16 @@ names_species[names_species == "cajan"] <- "cajca"
 names_species <- tibble(names_species)
 colnames(names_species) <- c('species')
 
-all_unique_gene models <- tibble()
+all_unique_gene_models <- tibble()
 for (query in names_species$species){
-  unique_gene models <- fread(paste0(query,'_300cds_no_other_legume_list.txt'), header = F)
-  unique_gene models <- unique_gene models %>% mutate(query_spec = query)
-#  unique_gene models <- unique_gene models %>% mutate(ref_spec=sapply(strsplit(V2,'[.]'),'[',1))  
+  unique_gene_models <- fread(paste0(query,'_300cds_no_other_legume_list.txt'), header = F)
+  unique_gene_models <- unique_gene models %>% mutate(query_spec = query)
+#  unique_gene_models <- unique_gene models %>% mutate(ref_spec=sapply(strsplit(V2,'[.]'),'[',1))  
   assign(paste0(query,'_300bp_unique_genes'),unique_genes)
-  all_unique_gene models <- bind_rows(all_unique_genes,unique_genes)
+  all_unique_gene_models <- bind_rows(all_unique_gene_models,unique_genes)
 }
 
-totals <- all_unique_gene models %>% group_by(query_spec) %>% summarise(n=n())
+totals <- all_unique_gene_models %>% group_by(query_spec) %>% summarise(n=n())
  
 #All legume Species vs NR BLAST p-value histogram
 pvalue_matrix= tibble()
@@ -45,7 +45,7 @@ translatetibble <- tibble(query_spec = unique(pvalue_matrix$query_spec),
                                   'Vigna unguiculata')) %>% 
   mutate(query_spec=gsub('Medtr','medtr',query_spec))
 
-all_unique_gene models <- all_unique_gene models %>% left_join(translatetibble) %>% 
+all_unique_gene_models <- all_unique_gene_models %>% left_join(translatetibble) %>% 
   group_by(query_spec) %>% tally()
 
 pvalue_matrix$pvalue_high <- as.factor((pvalue_matrix[,13]>0.01))
